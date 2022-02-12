@@ -1,2 +1,2 @@
-# GeeksForGeeks
-My daily GFG grind updates
+# LeetCode
+My daily Leetcode grind updates
