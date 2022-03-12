@@ -16,7 +16,7 @@
 class Solution {
     public boolean isCousins(TreeNode root, int x, int y) {
         int sum=0;
-        Queue<TreeNode> queue=new ArrayDeque<>();
+        Queue<TreeNode> queue=new LinkedList<>();
         queue.add(root);
         while(!queue.isEmpty()){
             int count=queue.size();
