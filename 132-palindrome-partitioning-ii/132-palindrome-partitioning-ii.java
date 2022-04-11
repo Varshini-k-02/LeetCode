@@ -1,41 +1,32 @@
 class Solution {
     public int minCut(String s) {
-        return findMinimum(s, 0, s.length()-1, new HashMap<>());
+        return find(s, 0, s.length()-1, new HashMap<>());
     }
-    
-    public int findMinimum(String s , int start, int end, HashMap<Integer, Integer> memo)
-    {
-        if(isPalindrome(s, start, end)) return 0;
-        
-        int key = start;
-        
-       if(memo.containsKey(key)) return memo.get(key);
-        
-        int ways = 100000;
-        
-        for(int i = start;i<end;i++)
-        {
-            if(isPalindrome(s, start, i))
-            {
-                int tempAns = 1 + findMinimum(s, i+1, end,  memo);
-                ways = Math.min(ways,tempAns);
+    public int find(String s,int st,int e,HashMap<Integer,Integer> map){
+        if(isPalindrome(s,st,e))
+            return 0;
+        int key=st;
+        if(map.containsKey(st))
+            return map.get(key);
+        int ways=100000;
+        for(int i=st;i<e;i++){
+            if(isPalindrome(s,st,i)){
+                int temp=1+find(s,i+1,e,map);
+                ways=Math.min(ways,temp);
             }
         }
-        
-        memo.put(key, ways);
-        
-        return memo.get(key);
+        map.put(key,ways);
+        return map.get(key);
     }
-    
-    public boolean isPalindrome(String s,int start, int end)
+    public boolean isPalindrome(String s,int start, int e)
     {
-        while(start<=end)
+        while(start<=e)
         {
-            if(s.charAt(start)!= s.charAt(end)) return false;
+            if(s.charAt(start)!= s.charAt(e)) return false;
             start++;
-            end--;
+            e--;
         }
         
         return true;
-    }
+}
 }
